@@ -1,15 +1,15 @@
-import shortid from 'shortid';
-import { ADD_CONTACT, FILTER, DELETE_CONTACT } from './constants';
 import { createAction } from '@reduxjs/toolkit';
 
-export const addContact = createAction(ADD_CONTACT, (name, number) => ({
-  payload: {
-    id: shortid.generate(),
-    name,
-    number,
-  },
-}));
+export const fetchContactRequest = createAction("contact/fetchContactRequest");
+export const fetchContactSuccess = createAction("contact/fetchContactSuccess");
+export const fetchContactError = createAction("contact/fetchContactError");
 
-export const filter = createAction(FILTER);
+export const addContactRequest = createAction("contact/addContactRequest");
+export const addContactSuccess = createAction("contact/addContactSuccess");
+export const addContactError = createAction("contact/addContactError");
 
-export const deleteContact = createAction(DELETE_CONTACT);
+export const deleteContactRequest = createAction("contact/deleteContactRequest");
+export const deleteContactSuccess = createAction("contact/deleteContactSuccess");
+export const deleteContactError = createAction("contact/deleteContactError");
+
+export const filter = createAction("contact/filterSuccess");

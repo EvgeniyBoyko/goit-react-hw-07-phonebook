@@ -2,6 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { filter } from "../../redux/actions";
+import { getFilter } from "../../redux/selectors";
 
 const Filter = ({ value, onChange }) => {
   return (
@@ -18,7 +19,7 @@ const Filter = ({ value, onChange }) => {
 
 const mapStateToProps = state => {
   return {
-    value: state.filter
+    value: getFilter(state)
   }
 }
 
@@ -33,17 +34,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter)
-
-    // changeFilter = e => {
-    //     this.setState({ filter: e.currentTarget.value });
-    // };
-
-
-// Filter.defaultProps = {
-//   changeFilter: () => {}
-// }
-
-// Filter.propTypes = {
-//   filter: PropTypes.func,
-//   changeFilter: PropTypes.func
-// }

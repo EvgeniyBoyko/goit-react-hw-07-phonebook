@@ -1,12 +1,13 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from "react-redux";
-import { deleteContact } from "../../redux/actions";
+import { deleteContact } from "../../redux/operations";
+import { getContacts, getFilter } from "../../redux/selectors";
 
 const ContactList = ({ contacts, onDelete }) => {
-  const contactElement = contacts.map(({ name, number, id }, idx) => (
+  const contactElement = contacts.map(({ name, number, id }) => (
     <li key={id}>
-      <p>{name}: {number} <button type="button" onClick={() => onDelete(idx)}>Delete</button></p>
+      <p>{name}: {number} <button type="button" onClick={() => onDelete(id)}>Delete</button></p>
     </li>
   ));
   return <ul>{contactElement}</ul>;
@@ -23,13 +24,13 @@ const contactFilter = (contacts, filter) => {
 
 
 const mapStateToProps = (state) => ({
-  contacts: contactFilter(state.contacts, state.filter)
+  contacts: contactFilter(getContacts(state), getFilter(state))
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    onDelete: (idx) => {
-      const action = deleteContact(idx)
+    onDelete: (id) => {
+      const action = deleteContact(id)
       dispatch(action);
     },
   };
